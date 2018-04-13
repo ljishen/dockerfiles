@@ -20,4 +20,4 @@ RUN apt-get clean && \
 ## switch back to default user
 USER 1000
 
-RUN printf "\\n\\n# Startup Program\\nmendeleydesktop &> $STARTUPDIR/mendeley_startup.log &" >> "$HOME"/wm_startup.sh
+RUN printf "\\n\\n# Startup Program\\nmendeleydesktop &> %s/mendeley_startup.log &" "$STARTUPDIR" >> "$HOME"/wm_startup.sh
