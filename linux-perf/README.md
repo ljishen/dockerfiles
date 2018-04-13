@@ -1,6 +1,6 @@
 # Linux Perf in Docker Container
 
-A Performance analysis tools for Linux.
+perf is a Performance analysis tools for Linux. Now is available using `docker run`.
 
 
 ## Usage
