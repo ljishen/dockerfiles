@@ -1,4 +1,4 @@
-FROM python:3-stretch
+FROM python:3-slim-stretch
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
 RUN apt-get update && \

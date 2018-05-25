@@ -1,0 +1,38 @@
+# Routes builds to run on our Trusty sudo-enabled infrastructure
+# See using docker in builds: https://docs.travis-ci.com/user/docker/
+sudo: required
+services:
+  - docker
+
+language: ruby
+
+env:
+  global:
+    - IMAGE_NAME=ljishen/perf
+
+script:
+  # Generate the Dockerfile for different architectures
+  - bash update.sh
+
+  # Configure binfmt-support on the Docker host
+  # See https://github.com/multiarch/alpine
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+
+  # Build image
+  - docker build -t "${IMAGE_NAME}:amd64-4.9" . -f debian/Dockerfile.amd64
+  - docker build -t "${IMAGE_NAME}:arm64v8-4.9" . -f debian/Dockerfile.arm64v8
+  - docker build -t "${IMAGE_NAME}:amd64-4.9-python3" . -f debian-python3/Dockerfile.amd64
+  - docker build -t "${IMAGE_NAME}:arm64v8-4.9-python3" . -f debian-python3/Dockerfile.arm64v8
+
+before_deploy:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+
+deploy:
+  provider: script
+  script:
+    - docker push "${IMAGE_NAME}:amd64-4.9"
+    - docker push "${IMAGE_NAME}:arm64v8-4.9"
+    - docker push "${IMAGE_NAME}:amd64-4.9-python3"
+    - docker push "${IMAGE_NAME}:arm64v8-4.9-python3"
+  on:
+    branch: master
