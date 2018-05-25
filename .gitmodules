@@ -1,3 +1,6 @@
 [submodule "pyben-nio"]
 	path = pyben-nio
 	url = https://github.com/ljishen/pyben-nio
+[submodule "linux-perf"]
+	path = linux-perf
+	url = https://github.com/ljishen/linux-perf
