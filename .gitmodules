@@ -4,3 +4,6 @@
 [submodule "linux-perf"]
 	path = linux-perf
 	url = https://github.com/ljishen/linux-perf
+[submodule "docker-vnc-ideaiu"]
+	path = docker-vnc-ideaiu
+	url = https://github.com/ljishen/docker-vnc-ideaiu
