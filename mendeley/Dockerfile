@@ -6,7 +6,8 @@ ARG VERSION=1.19.4
 ARG FILENAME=mendeleydesktop_${VERSION}-stable_amd64.deb
 ADD https://desktop-download.mendeley.com/download/apt/pool/main/m/mendeleydesktop/${FILENAME} .
 
-RUN apt install ./"${FILENAME}" && rm "${FILENAME}"
+RUN apt update && apt -y install ./"${FILENAME}" \
+    && rm "${FILENAME}"
 
 ## Clean Up
 RUN apt-get clean \
