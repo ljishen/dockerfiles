@@ -4,7 +4,7 @@ ENV REFRESHED_AT 2018-04-12
 
 USER 0
 
-ARG VERSION=1.19.2
+ARG VERSION=1.19.4
 ARG FILENAME=mendeleydesktop_${VERSION}-stable_amd64.deb
 ADD https://desktop-download.mendeley.com/download/apt/pool/main/m/mendeleydesktop/${FILENAME} .
 
